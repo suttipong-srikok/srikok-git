@@ -18,6 +18,10 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QLabel>
+#include <QLineEdit>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -34,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_remoteManager(nullptr)
     , m_settings(nullptr)
 {
-    setWindowTitle("SRK Git - Git Repository Manager");
+    setWindowTitle("Srikok Git - Git Repository Manager");
     setWindowIcon(QIcon(":/icons/app.png"));
     resize(1200, 800);
     
@@ -113,8 +117,8 @@ void MainWindow::setupMenus()
     m_settingsAction->setShortcut(QKeySequence::Preferences);
     m_settingsAction->setStatusTip("Configure application settings");
     
-    m_aboutAction = new QAction("&About SRK Git", this);
-    m_aboutAction->setStatusTip("Show information about SRK Git");
+    m_aboutAction = new QAction("&About Srikok Git", this);
+    m_aboutAction->setStatusTip("Show information about Srikok Git");
     
     m_exitAction = new QAction("E&xit", this);
     m_exitAction->setShortcut(QKeySequence::Quit);
@@ -182,9 +186,27 @@ void MainWindow::openRepository()
 
 void MainWindow::cloneRepository()
 {
-    bool ok;
-    QString url = QInputDialog::getText(this, "Clone Repository", "Repository URL:", QLineEdit::Normal, QString(), &ok);
-    if (ok && !url.isEmpty()) {
+    QDialog dialog(this);
+    dialog.setWindowTitle("Clone Repository");
+    dialog.setMinimumWidth(500);
+    
+    QVBoxLayout *layout = new QVBoxLayout(&dialog);
+    
+    QLabel *label = new QLabel("Repository URL:");
+    layout->addWidget(label);
+    
+    QLineEdit *urlEdit = new QLineEdit();
+    urlEdit->setMinimumWidth(450);
+    layout->addWidget(urlEdit);
+    
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    layout->addWidget(buttonBox);
+    
+    connect(buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+    
+    if (dialog.exec() == QDialog::Accepted && !urlEdit->text().isEmpty()) {
+        QString url = urlEdit->text();
         QString dir = QFileDialog::getExistingDirectory(this, "Choose Clone Directory", QString(), QFileDialog::ShowDirsOnly);
         if (!dir.isEmpty()) {
             if (m_gitManager->cloneRepository(url, dir)) {
@@ -217,10 +239,10 @@ void MainWindow::showSettings()
 
 void MainWindow::showAbout()
 {
-    QMessageBox::about(this, "About SRK Git", 
-        "SRK Git v1.0.0\n\n"
+    QMessageBox::about(this, "About Srikok Git", 
+        "Srikok Git v1.0.0\n\n"
         "A Git repository manager.\n\n"
-        "Copyright © 2024 SRK IT Service\n"
+        "Copyright © 2025 Srikoksoft\n"
         "Built with Qt and C++");
 }
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(SRKGit VERSION 1.0.0 LANGUAGES CXX)
+project(SrikokGit VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -33,11 +33,11 @@ set(HEADERS
     src/settings.h
 )
 
-qt_add_executable(SRKGit ${SOURCES} ${HEADERS})
+qt_add_executable(SrikokGit ${SOURCES} ${HEADERS})
 
-target_link_libraries(SRKGit PRIVATE Qt6::Core Qt6::Widgets)
+target_link_libraries(SrikokGit PRIVATE Qt6::Core Qt6::Widgets)
 
-set_target_properties(SRKGit PROPERTIES
+set_target_properties(SrikokGit PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
