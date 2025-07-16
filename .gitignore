@@ -3,22 +3,42 @@ build/
 build-*/
 debug/
 release/
+Debug/
+Release/
+RelWithDebInfo/
+MinSizeRel/
+out/
+
+# Deployment directories
+deploy/
+dist/
+package/
 
 # CMake generated files
 CMakeCache.txt
 CMakeFiles/
+CMakeScripts/
 cmake_install.cmake
+install_manifest.txt
 Makefile
 *.cmake
+CTestTestfile.cmake
+Testing/
 
 # Qt generated files
 *.pro.user*
 *.qmake.stash
+*.qmake.cache
+*.pro.user
+*.pro.user.*
 moc_*.cpp
 moc_*.h
 qrc_*.cpp
 ui_*.h
 *.moc
+*.qm
+*.ts
+*.qrc.depends
 
 # Compiled Object files
 *.slo
@@ -51,6 +71,29 @@ ui_*.h
 *.app
 SrikokGit
 
+# Windows specific
+*.pdb
+*.ilk
+*.map
+*.tlog
+*.idb
+*.res
+*.rc.compiled
+*.exp
+*.manifest
+
+# Visual Studio
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcpkg.user
+
 # Visual Studio Code
 .vscode/
 
@@ -82,10 +125,20 @@ Thumbs.db
 # Log files
 *.log
 
-# IDE files
-*.suo
-*.vcxproj.user
-*.sln.docstates
+# Archive files
+*.zip
+*.tar.gz
+*.tar.bz2
+*.7z
+*.rar
+
+# Package files
+*.deb
+*.rpm
+*.pkg
+*.dmg
+*.msi
+*.nupkg
 
 # OS generated files
 .DS_Store
@@ -95,3 +148,40 @@ Thumbs.db
 .Trashes
 ehthumbs.db
 Thumbs.db
+Desktop.ini
+
+# Git files
+*.patch
+*.diff
+
+# Ninja
+.ninja_deps
+.ninja_log
+
+# Conan
+conanfile.txt
+conandata.yml
+conaninfo.txt
+conanbuildinfo.*
+
+# vcpkg
+vcpkg_installed/
+
+# Test results
+test_results/
+test_output/
+
+# Code coverage
+coverage/
+*.gcov
+*.gcda
+*.gcno
+
+# Static analysis
+cppcheck-report.xml
+*.sarif
+
+# Documentation
+docs/html/
+docs/latex/
+*.dox

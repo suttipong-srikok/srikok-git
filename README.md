@@ -39,12 +39,12 @@ Srikok Git is a feature-rich Git GUI client that streamlines version control wor
 
 ### Development Dependencies
 - Qt6::Core and Qt6::Widgets modules
-- qt6-base-dev and qt6-tools-dev packages
+- qt6-base-dev and qt6-tools-dev packages (Linux)
 - CMake and build-essential tools
 
 ## Quick Start
 
-### Building from Source
+### Building on Linux
 
 ```bash
 # Clone or navigate to project directory
@@ -63,14 +63,75 @@ make -j$(nproc)
 ./SrikokGit
 ```
 
+### Building on Windows
+
+**Prerequisites:**
+- Install Visual Studio 2022 or Build Tools
+- Install Qt 6.5+ from qt.io or use vcpkg
+- Install CMake and Git
+
+**Option 1: Using Batch Script (Recommended)**
+```batch
+# Run the automated build script
+build-windows.bat
+```
+
+**Option 2: Using PowerShell Script**
+```powershell
+# Set execution policy if needed
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# Run the PowerShell build script
+.\build-windows.ps1
+```
+
+**Option 3: Manual Build**
+```batch
+# Create build directory
+mkdir build
+cd build
+
+# Configure with CMake
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="C:\Qt\6.5.0\msvc2022_64"
+
+# Build application
+cmake --build . --config Release
+
+# Run the application
+.\Release\SrikokGit.exe
+```
+
+### Deployment on Windows
+
+```batch
+# After building, deploy with Qt dependencies
+deploy-windows.bat
+
+# Or use PowerShell deployment script
+.\deploy-windows.ps1
+```
+
 ### Alternative Build with Ninja (Faster)
 
+**Linux:**
 ```bash
 # Install ninja build system
 sudo apt install ninja-build
 
 # Configure with Ninja generator
 cmake .. -G Ninja
+
+# Build with Ninja
+ninja
+```
+
+**Windows:**
+```batch
+# Install Ninja (if not already installed)
+winget install Ninja-build.Ninja
+
+# Configure with Ninja generator
+cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release
 
 # Build with Ninja
 ninja
@@ -136,6 +197,14 @@ ninja
 
 ### Contributing
 This is proprietary software developed by Srikoksoft. For support or inquiries, please contact through official channels.
+
+## Platform-Specific Documentation
+
+### Windows Users
+For detailed Windows build instructions, troubleshooting, and deployment information, see [BUILD_WINDOWS.md](BUILD_WINDOWS.md).
+
+### Linux Users
+For comprehensive Linux build instructions from scratch, see [BUILD_FROM_SCRATCH.md](BUILD_FROM_SCRATCH.md) and [INSTALL_UBUNTU.md](INSTALL_UBUNTU.md).
 
 ## Support
 
